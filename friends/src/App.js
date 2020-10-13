@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 
 import Login from "./components/Login";
+import { PrivateRoute } from "./components/PrivateRoute";
+import Friends from "./components/Friends";
 
 function App() {
   return (
@@ -19,9 +21,9 @@ function App() {
             <NavLink to="/friends">Friends</NavLink>
           </nav>
         </header>
-
         <Switch>
           <Route path="/login" component={Login} />
+          <PrivateRoute path="/friends" component={Friends} />
         </Switch>
       </div>
     </Router>
