@@ -7,6 +7,8 @@ import {
   Switch,
 } from "react-router-dom";
 
+import Login from "./components/Login";
+
 function App() {
   return (
     <Router>
@@ -17,6 +19,10 @@ function App() {
             <NavLink to="/friends">Friends</NavLink>
           </nav>
         </header>
+
+        <Switch>
+          <Route path="/login" component={Login} />
+        </Switch>
       </div>
     </Router>
   );

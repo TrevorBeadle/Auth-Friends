@@ -1,4 +1,5 @@
 import React from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 class Login extends React.Component {
   state = {
@@ -7,13 +8,22 @@ class Login extends React.Component {
 
   handleChange = e => {
     this.setState({
-      ...this.state.credentials,
-      [e.target.name]: e.target.value,
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
   login = e => {
     e.preventDefault();
+    axiosWithAuth()
+      .post("/api/login", this.state.credentials)
+      .then(res => {
+        localStorage.setItem("token", res.data.payload);
+        this.props.history.push("/friends");
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -42,3 +52,5 @@ class Login extends React.Component {
     );
   }
 }
+
+export default Login;
