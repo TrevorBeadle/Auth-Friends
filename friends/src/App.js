@@ -9,7 +9,7 @@ import {
 
 import Login from "./components/Login";
 import { PrivateRoute } from "./components/PrivateRoute";
-import Friends from "./components/Friends";
+import FriendsList from "./components/FriendsList";
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           </nav>
         </header>
         <Switch>
+          <PrivateRoute path="/friends" component={FriendsList} />
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/friends" component={Friends} />
         </Switch>
       </div>
     </Router>
