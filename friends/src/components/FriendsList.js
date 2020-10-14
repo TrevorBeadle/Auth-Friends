@@ -33,6 +33,13 @@ class FriendsList extends React.Component {
       .catch(err => console.log(err));
   };
 
+  deleteFriend = id => {
+    axiosWithAuth().delete(`/api/friends/${id}`);
+    this.setState({
+      friends: this.state.friends.filter(friend => friend.id !== id),
+    });
+  };
+
   componentDidMount() {
     this.getFriends();
   }
@@ -41,7 +48,13 @@ class FriendsList extends React.Component {
     return (
       <div className="friends">
         {this.state.friends.map(friend => {
-          return <Friend key={friend.id} friend={friend} />;
+          return (
+            <Friend
+              key={friend.id}
+              friend={friend}
+              deleteFriend={this.deleteFriend}
+            />
+          );
         })}
         <FriendForm onSubmit={this.onSubmit} />
       </div>
